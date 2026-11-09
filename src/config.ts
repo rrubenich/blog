@@ -5,7 +5,7 @@
 export const SITE = {
   title: "Inkline",
   description: "A quiet place for writing, built with Astro.",
-  url: "https://inkline.example.com", // your deployed URL (used for RSS, sitemap, canonical links)
+  url: "https://rubenich.dev", // your deployed URL (used for RSS, sitemap, canonical links)
   author: "Your Name",
   lang: "en",
 

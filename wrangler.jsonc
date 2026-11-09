@@ -12,5 +12,10 @@
   "assets": {
     "directory": "./dist",
     "not_found_handling": "404-page"
-  }
+  },
+
+  // Serve the site on the custom domain; Cloudflare creates the DNS record and certificate.
+  "routes": [
+    { "pattern": "rubenich.dev", "custom_domain": true }
+  ]
 }
