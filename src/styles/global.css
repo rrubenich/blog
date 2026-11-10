@@ -286,7 +286,12 @@ button { font: inherit; color: inherit; cursor: pointer; }
 @media print { .site-header, .site-footer, .pager, .toc { display: none; } body { background: #fff; color: #000; } }
 
 /* ---------- About ---------- */
-.about .page-title { margin-top: 0.25rem; }
+/* Same column width and title size as an article, so About reads like the rest of the site. */
+.about { width: min(100% - 2 * var(--gutter), var(--measure)); font-size: var(--size-reading); }
+.about .page-title { margin-top: 0.25rem; font-size: clamp(2rem, 5vw, 2.9rem); line-height: 1.12; }
+.about .job-points, .about .feature-text, .about .now { font-size: 1.05rem; }
+.about .job-roles { font-size: 1rem; }
+.about-section > p { font-size: 1.05rem; }
 .about-head { padding-top: clamp(2rem, 6vw, 3.5rem); }
 .about-head::after { content: ""; display: table; clear: both; }
 .about-photo {
@@ -294,7 +299,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   margin: 0.25rem 0 1rem 1.5rem; border-radius: 12px; border: 1px solid var(--line);
 }
 @media (max-width: 34rem) { .about-photo { float: none; display: block; width: 10rem; margin: 0 0 1.25rem; } }
-.about-lede { font: 1.25rem/1.5 var(--font-serif); margin: 0.75rem 0 1.25rem; }
+.about-lede { font: 1.15em/1.5 var(--font-serif); margin: 0.75rem 0 1.25rem; }
 .about-facts { list-style: none; padding: 0; margin: 0 0 1.25rem; display: flex; flex-wrap: wrap; gap: 0.35rem 1.25rem; color: var(--muted); font-size: 0.95rem; }
 .about-links { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .pill {
