@@ -78,6 +78,31 @@ const jobs: Job[] = [
   },
 ];
 
+// Internships during the Computer Science degree at Unioeste.
+const internships: Job[] = [
+  {
+    company: "Itaipu Binacional",
+    url: "https://www.itaipu.gov.br",
+    logo: "/logos/itaipu-binacional.png",
+    blurb: "The binational hydroelectric plant on the Brazil–Paraguay border",
+    where: "Foz do Iguaçu, Paraná",
+    roles: [{ title: "Software Engineer Intern", dates: "Mar 2015 – Jan 2016" }],
+    highlights: ["Developed and maintained internal administrative systems on IBM Lotus Notes and Java."],
+  },
+  {
+    company: "Itaipu Parquetec",
+    url: "https://www.itaipuparquetec.org.br",
+    logo: "/logos/itaipu-parquetec.png",
+    blurb: "Science and technology park at the Itaipu dam",
+    where: "Foz do Iguaçu, Paraná",
+    roles: [{ title: "Software Researcher Intern", dates: "Apr 2014 – Mar 2015" }],
+    highlights: [
+      "Researched augmented reality for dam safety and tourism with Unioeste professors and the Center for Advanced Studies in Dam Safety (CEASB).",
+      "Helped build SIGATI, a georeferenced information system for Itaipu tourism, with JavaScript, Wikitude, Ionic and AngularJS.",
+    ],
+  },
+];
+
 const projects = [
   {
     name: "platform-base",
@@ -177,6 +202,26 @@ const initials = (name: string) => name.split(/\s+/).map((w) => w[0]).join("").s
           </li>
         ))}
       </ol>
+      <h3 class="subhead">Internships</h3>
+      <ol class="jobs">
+        {internships.map((j) => (
+          <li class="job">
+            <a class="job-logo" href={j.url} target="_blank" rel="noopener" aria-hidden="true" tabindex="-1">
+              {hasFile(j.logo) ? <img src={j.logo} alt="" width="48" height="48" loading="lazy" /> : <span>{initials(j.company)}</span>}
+            </a>
+            <div class="job-body">
+              <h3><a href={j.url} target="_blank" rel="noopener">{j.company}</a></h3>
+              <p class="job-blurb">{j.blurb} · {j.where}</p>
+              <ul class="job-roles">
+                {j.roles.map((r) => <li><span>{r.title}</span><time>{r.dates}</time></li>)}
+              </ul>
+              <ul class="job-points">
+                {j.highlights.map((h) => <li>{h}</li>)}
+              </ul>
+            </div>
+          </li>
+        ))}
+      </ol>
     </section>
 
     <section class="about-section" aria-labelledby="h-projects">
@@ -207,7 +252,23 @@ const initials = (name: string) => name.split(/\s+/).map((w) => w[0]).join("").s
 
     <section class="about-section" aria-labelledby="h-edu">
       <h2 id="h-edu">Education</h2>
-      <p>Universidade Estadual do Oeste do Paraná (Unioeste)</p>
+      <ol class="jobs">
+        <li class="job">
+          <a class="job-logo" href="https://www.unioeste.br" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1">
+            {hasFile("/logos/unioeste.png") ? <img src="/logos/unioeste.png" alt="" width="48" height="48" loading="lazy" /> : <span>U</span>}
+          </a>
+          <div class="job-body">
+            <h3><a href="https://www.unioeste.br" target="_blank" rel="noopener">Universidade Estadual do Oeste do Paraná (Unioeste)</a></h3>
+            <ul class="job-roles">
+              <li><span>B.Sc. in Computer Science</span><time>2011 – 2015</time></li>
+            </ul>
+            <ul class="job-points">
+              <li>Student representative for the Computer Science class of 2011.</li>
+              <li>Member of the Computer Science Academic Center (CACC), 2012–2015.</li>
+            </ul>
+          </div>
+        </li>
+      </ol>
     </section>
   </div>
 </Base>
