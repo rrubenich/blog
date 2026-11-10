@@ -191,7 +191,7 @@ const initials = (name: string) => name.split(/\s+/).map((w) => w[0]).join("").s
         <li>🌎 Remote, US time-zone overlap, open to relocation</li>
         <li>🗣️ Portuguese, English, Spanish</li>
       </ul>
-      <div class="about-links">
+      <div class="about-links" data-area="about-profiles">
         {SITE.profiles.map((p) => (
           <a class="pill" href={p.href} rel="me noopener" target="_blank"><BrandIcon name={p.icon as "github" | "linkedin"} />{p.label}</a>
         ))}
@@ -206,7 +206,7 @@ const initials = (name: string) => name.split(/\s+/).map((w) => w[0]).join("").s
 
     <section class="about-section" aria-labelledby="h-highlight">
       <h2 id="h-highlight">Highlight</h2>
-      <a class="feature" href={cbc} target="_blank" rel="noopener">
+      <a class="feature" data-area="about-highlight" href={cbc} target="_blank" rel="noopener">
         <span class="feature-tag">In the news · CBC News, Jan 2026</span>
         <span class="feature-title">A virtual ER waiting room, cited by a health minister</span>
         <span class="feature-text">
@@ -221,7 +221,7 @@ const initials = (name: string) => name.split(/\s+/).map((w) => w[0]).join("").s
 
     <section class="about-section" aria-labelledby="h-work">
       <h2 id="h-work">Experience</h2>
-      <ol class="jobs">
+      <ol class="jobs" data-area="about-experience">
         {jobs.map((j) => (
           <li class="job">
             <a class="job-logo" href={j.url} target="_blank" rel="noopener" aria-hidden="true" tabindex="-1">
@@ -237,7 +237,7 @@ const initials = (name: string) => name.split(/\s+/).map((w) => w[0]).join("").s
                 {j.highlights.map((h) => <li>{h}</li>)}
               </ul>
               {j.links && (
-                <ul class="work-links">
+                <ul class="work-links" data-area="about-work-links">
                   {j.links.map((l) => (
                     <li>
                       <a href={l.href} target="_blank" rel="noopener">
@@ -253,7 +253,7 @@ const initials = (name: string) => name.split(/\s+/).map((w) => w[0]).join("").s
         ))}
       </ol>
       <h3 class="subhead">Internships</h3>
-      <ol class="jobs">
+      <ol class="jobs" data-area="about-internships">
         {internships.map((j) => (
           <li class="job">
             <a class="job-logo" href={j.url} target="_blank" rel="noopener" aria-hidden="true" tabindex="-1">
@@ -269,7 +269,7 @@ const initials = (name: string) => name.split(/\s+/).map((w) => w[0]).join("").s
                 {j.highlights.map((h) => <li>{h}</li>)}
               </ul>
               {j.links && (
-                <ul class="work-links">
+                <ul class="work-links" data-area="about-work-links">
                   {j.links.map((l) => (
                     <li>
                       <a href={l.href} target="_blank" rel="noopener">
@@ -288,7 +288,7 @@ const initials = (name: string) => name.split(/\s+/).map((w) => w[0]).join("").s
 
     <section class="about-section" aria-labelledby="h-projects">
       <h2 id="h-projects">What I'm building</h2>
-      <div class="projects">
+      <div class="projects" data-area="about-projects">
         {projects.map((p) => (
           <article class="project">
             <h3><a href={p.href} target="_blank" rel="noopener"><BrandIcon name="github" />{p.name}</a></h3>
@@ -314,7 +314,7 @@ const initials = (name: string) => name.split(/\s+/).map((w) => w[0]).join("").s
 
     <section class="about-section" aria-labelledby="h-edu">
       <h2 id="h-edu">Education</h2>
-      <ol class="jobs">
+      <ol class="jobs" data-area="about-education">
         <li class="job">
           <a class="job-logo" href="https://www.unioeste.br" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1">
             {hasFile("/logos/unioeste.png") ? <img src="/logos/unioeste.png" alt="" width="48" height="48" loading="lazy" /> : <span>U</span>}

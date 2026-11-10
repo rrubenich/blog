@@ -14,7 +14,7 @@ const initial = title.trim().charAt(0).toUpperCase();
 const Heading = variant === "hero" ? "h2" : "h3";
 ---
 
-<article class:list={["card", `card-${variant}`]}>
+<article class:list={["card", `card-${variant}`]} data-area={`home-${variant === "hero" ? "featured" : variant === "row" ? "latest" : "more"}`}>
   <a class:list={["card-img", { placeholder: !cover }]} href={href} tabindex="-1" aria-hidden="true">
     {cover ? (
       <img src={cover.src} alt={coverAlt} width={cover.width} height={cover.height} style={`object-position: center ${coverPosition ?? "center"}`} loading={variant === "hero" ? "eager" : "lazy"} decoding="async" />

@@ -4,7 +4,7 @@ import { SITE } from "../config";
 const { posts } = Astro.props as { posts: Post[] };
 ---
 
-<ul class="list">
+<ul class="list" data-area="post-list">
   {posts.map((p) => (
     <li>
       <a href={`/posts/${p.id}/`}>

@@ -10,11 +10,11 @@ const isCurrent = (href: string) => path === href || (href !== "/" && path.start
 
 <header class="site-header">
   <div class="masthead">
-    <a class="mark-link" href="/" aria-label={`${SITE.title} home`}>
+    <a class="mark-link" data-area="header-logo" href="/" aria-label={`${SITE.title} home`}>
       <svg class="mark" viewBox="0 0 30 24" aria-hidden="true"><path d="M3 12h24" stroke="currentColor" stroke-opacity=".25" stroke-width="3" stroke-linecap="round" /><path d="M3 12h15" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" /></svg>
     </a>
-    <a class="brand" href="/">{SITE.title}</a>
-    <span class="tools">
+    <a class="brand" data-area="header-logo" href="/">{SITE.title}</a>
+    <span class="tools" data-area="header-tools">
       {SITE.profiles.map((p) => (
         <a class="icon-btn" href={p.href} aria-label={p.label} rel="me noopener" target="_blank">
           <BrandIcon name={p.icon as "github" | "linkedin"} />
@@ -32,7 +32,7 @@ const isCurrent = (href: string) => path === href || (href !== "/" && path.start
       </button>
     </span>
   </div>
-  <nav class="site-nav" aria-label="Main">
+  <nav class="site-nav" aria-label="Main" data-area="header-nav">
     {SITE.nav.map((l) => <a href={l.href} aria-current={isCurrent(l.href) ? "page" : undefined}>{l.label}</a>)}
   </nav>
 </header>
@@ -43,5 +43,6 @@ const isCurrent = (href: string) => path === href || (href !== "/" && path.start
     const next = root.dataset.theme === "dark" ? "light" : "dark";
     root.dataset.theme = next;
     try { localStorage.setItem("theme", next); } catch {}
+    (window as unknown as { dataLayer?: object[] }).dataLayer?.push({ event: "theme_change", theme: next });
   });
 </script>

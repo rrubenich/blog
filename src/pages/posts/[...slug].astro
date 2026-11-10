@@ -42,7 +42,7 @@ const jsonLd = {
   <article class="article" data-pagefind-body>
     <header class="article-head">
       {tags.length > 0 && (
-        <ul class="tags" data-pagefind-ignore>
+        <ul class="tags" data-pagefind-ignore data-area="post-tags">
           {tags.map((t) => <li><a href={`/tags/${slugify(t)}/`}>{t}</a></li>)}
         </ul>
       )}
@@ -68,13 +68,14 @@ const jsonLd = {
       </nav>
     )}
 
-    <div class="prose">
+    <div class="prose" data-area="post-body">
       <Content />
     </div>
+    <div id="read-end" aria-hidden="true"></div>
 
     {updatedDate && <p class="updated">Updated {formatDate(updatedDate, SITE.lang)}</p>}
 
-    <nav class="pager" aria-label="More posts" data-pagefind-ignore>
+    <nav class="pager" aria-label="More posts" data-pagefind-ignore data-area="post-pager">
       {older && <a class="prev" href={`/posts/${older.id}/`}><small>Older</small><span>{older.data.title}</span></a>}
       {newer && <a class="next" href={`/posts/${newer.id}/`}><small>Newer</small><span>{newer.data.title}</span></a>}
     </nav>
@@ -82,6 +83,22 @@ const jsonLd = {
 </Base>
 
 <script>
+  // Fires once when the reader reaches the end of the post body.
+  const end = document.getElementById("read-end");
+  if (end && "IntersectionObserver" in window) {
+    const started = performance.now();
+    const io = new IntersectionObserver((entries) => {
+      if (!entries.some((e) => e.isIntersecting)) return;
+      io.disconnect();
+      (window as unknown as { dataLayer?: object[] }).dataLayer?.push({
+        event: "read_complete",
+        post_slug: location.pathname,
+        read_seconds: Math.round((performance.now() - started) / 1000),
+      });
+    });
+    io.observe(end);
+  }
+
   document.querySelectorAll<HTMLPreElement>(".prose pre").forEach((pre) => {
     const btn = document.createElement("button");
     btn.type = "button";
@@ -91,6 +108,7 @@ const jsonLd = {
       try {
         await navigator.clipboard.writeText(pre.querySelector("code")?.innerText ?? "");
         btn.textContent = "Copied";
+        (window as unknown as { dataLayer?: object[] }).dataLayer?.push({ event: "copy_code", post_slug: location.pathname });
       } catch {
         btn.textContent = "Press Ctrl+C";
       }
