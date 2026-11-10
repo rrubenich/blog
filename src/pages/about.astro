@@ -15,6 +15,7 @@ type Job = {
   where: string;
   roles: Role[];
   highlights: string[];
+  links?: { title: string; href: string; image: string }[]; // product pages, shown with a thumbnail
 };
 
 const jobs: Job[] = [
@@ -36,6 +37,13 @@ const jobs: Job[] = [
       "Took the real-time communication Hub from beta to GA, and cut a flagship page load from 4.4s to 0.6s.",
       "Took Insights Center, the patient-journey analytics product, from event model to public launch, and led the next-gen UI rollout across five product pods.",
     ],
+    links: [
+      { title: "Intake Forms & Checklists", href: "https://www.lumahealth.io/solutions/revenue/intake-forms-and-checklists", image: "/work/luma-intake.jpg" },
+      { title: "Communication Hub", href: "https://www.lumahealth.io/solutions/outreach/communication", image: "/work/luma-communication.jpg" },
+      { title: "Insurance Eligibility", href: "https://www.lumahealth.io/solutions/revenue/eligibility", image: "/work/luma-eligibility.jpg" },
+      { title: "Payments", href: "https://www.lumahealth.io/solutions/revenue/payments", image: "/work/luma-payments.jpg" },
+      { title: "Insights Center", href: "https://www.lumahealth.io/downloads/product-overview-insights-center", image: "/work/luma-insights.jpg" },
+    ],
   },
   {
     company: "iFood",
@@ -48,6 +56,9 @@ const jobs: Job[] = [
       "Architected a CRM that gives 250,000 restaurant partners daily analytics about their business and customers.",
       "Built the front-end infrastructure behind 30 million targeted vouchers in a single year.",
       "Set up mentorship programs for junior and mid-level engineers.",
+    ],
+    links: [
+      { title: "iFood for Restaurants: partner tools", href: "https://parceiros.ifood.com.br/restaurante/como-funciona/ferramentas", image: "/work/ifood-tools.jpg" },
     ],
   },
   {
@@ -74,6 +85,9 @@ const jobs: Job[] = [
       "Built a design system that cut development time by up to 90% on most application pages.",
       "Turned a 240,000-line JavaScript codebase into a modular framework that new products were built on.",
       "Shipped SPAs, Java microservices and offline-first React Native apps; mentored engineers through development plans.",
+    ],
+    links: [
+      { title: "TOTVS CRM: customer management", href: "https://www.totvs.com/crm/gestao-de-clientes/", image: "/work/totvs-crm.jpg" },
     ],
   },
 ];
@@ -222,6 +236,18 @@ const initials = (name: string) => name.split(/\s+/).map((w) => w[0]).join("").s
               <ul class="job-points">
                 {j.highlights.map((h) => <li>{h}</li>)}
               </ul>
+              {j.links && (
+                <ul class="work-links">
+                  {j.links.map((l) => (
+                    <li>
+                      <a href={l.href} target="_blank" rel="noopener">
+                        <img src={l.image} alt="" width="96" height="64" loading="lazy" />
+                        <span><span class="work-title">{l.title}</span><span class="work-host">{new URL(l.href).hostname.replace(/^www\./, "")}</span></span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           </li>
         ))}
@@ -242,6 +268,18 @@ const initials = (name: string) => name.split(/\s+/).map((w) => w[0]).join("").s
               <ul class="job-points">
                 {j.highlights.map((h) => <li>{h}</li>)}
               </ul>
+              {j.links && (
+                <ul class="work-links">
+                  {j.links.map((l) => (
+                    <li>
+                      <a href={l.href} target="_blank" rel="noopener">
+                        <img src={l.image} alt="" width="96" height="64" loading="lazy" />
+                        <span><span class="work-title">{l.title}</span><span class="work-host">{new URL(l.href).hostname.replace(/^www\./, "")}</span></span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           </li>
         ))}
