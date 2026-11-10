@@ -7,7 +7,7 @@ interface Props {
   variant?: "hero" | "row" | "tile";
 }
 const { post, variant = "row" } = Astro.props;
-const { title, description, pubDate, cover, coverAlt } = post.data;
+const { title, description, pubDate, cover, coverAlt, coverPosition } = post.data;
 const href = `/posts/${post.id}/`;
 // Posts without a `cover` get a typographic placeholder instead of an image.
 const initial = title.trim().charAt(0).toUpperCase();
@@ -17,7 +17,7 @@ const Heading = variant === "hero" ? "h2" : "h3";
 <article class:list={["card", `card-${variant}`]}>
   <a class:list={["card-img", { placeholder: !cover }]} href={href} tabindex="-1" aria-hidden="true">
     {cover ? (
-      <img src={cover.src} alt={coverAlt} width={cover.width} height={cover.height} loading={variant === "hero" ? "eager" : "lazy"} decoding="async" />
+      <img src={cover.src} alt={coverAlt} width={cover.width} height={cover.height} style={`object-position: center ${coverPosition ?? "center"}`} loading={variant === "hero" ? "eager" : "lazy"} decoding="async" />
     ) : (
       <span>{initial}</span>
     )}

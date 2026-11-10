@@ -4,6 +4,9 @@ description: "I decided to spend my time on what I love: building, learning, and
 pubDate: 2026-11-10
 tags: ["meta", "learning"]
 featured: true
+cover: ./hello-world/cover.png
+coverAlt: "A TypeScript HelloWorld class that logs \"Hello World from rubenich.dev\", with node:test tests"
+coverPosition: top
 ---
 
 Every programmer's first program prints the same two words. It felt right to start here the same way.

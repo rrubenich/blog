@@ -13,6 +13,7 @@ const posts = defineCollection({
     featured: z.boolean().default(false),
     cover: image().optional(), // relative path to an image next to the post, e.g. ./my-post/cover.png
     coverAlt: z.string().default(""),
+    coverPosition: z.enum(["top", "center", "bottom"]).default("center"), // which part of the cover stays visible when cropped
     draft: z.boolean().default(false),
   }),
 });
