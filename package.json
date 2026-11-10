@@ -24,7 +24,6 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^26.6.6",
     "wrangler": "^4.152.0"
   }
 }

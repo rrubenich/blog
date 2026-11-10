@@ -29,6 +29,10 @@ export const SITE = {
     ogImages: true, // generate a social preview image for every post at build time
   },
 
+  // Google Tag Manager container ID (e.g. "GTM-ABC1234"). Leave empty to load no tracking.
+  // The PUBLIC_GTM_ID environment variable overrides it.
+  gtmId: "GTM-NTP8WDZN",
+
   postsOnHome: 4, // posts listed beside the featured one; older ones go under "More posts"
   morePostsOnHome: 6,
   // Profiles shown as icons in the header (icon: "github" | "linkedin").

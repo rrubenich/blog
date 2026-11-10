@@ -25,6 +25,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogPath = image ?? (SITE.features.ogImages ? "/og/default.png" : undefined);
 const ogUrl = ogPath ? new URL(ogPath, Astro.site).href : undefined;
 const siteUrl = new URL("/", Astro.site).href;
+const gtmId = (import.meta.env.PUBLIC_GTM_ID ?? SITE.gtmId ?? "").trim();
+// Only load GTM in production builds, so local previews don't count as visits.
+const loadGtm = import.meta.env.PROD && /^GTM-[A-Z0-9]+$/.test(gtmId);
 
 // Site-wide structured data: who writes this site and what it is.
 const graph = {
@@ -63,6 +66,18 @@ const graph = {
 <html lang={SITE.lang} data-theme="light">
   <head>
     <meta charset="utf-8" />
+    {loadGtm && (
+      <script is:inline define:vars={{ gtmId }}>
+        (function (w, d, s, l, i) {
+          w[l] = w[l] || [];
+          w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+          var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != "dataLayer" ? "&l=" + l : "";
+          j.async = true;
+          j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+          f.parentNode.insertBefore(j, f);
+        })(window, document, "script", "dataLayer", gtmId);
+      </script>
+    )}
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
@@ -114,6 +129,9 @@ const graph = {
     </script>
   </head>
   <body>
+    {loadGtm && (
+      <noscript><iframe src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`} height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+    )}
     {reading && <div class="inkline" aria-hidden="true"></div>}
     <a class="skip" href="#main">Skip to content</a>
     <Header reading={reading} />
