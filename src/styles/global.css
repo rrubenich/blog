@@ -295,10 +295,10 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .about-head { padding-top: clamp(2rem, 6vw, 3.5rem); }
 .about-head::after { content: ""; display: table; clear: both; }
 .about-photo {
-  float: right; width: clamp(8rem, 30%, 12rem); height: auto; aspect-ratio: 3 / 4; object-fit: cover;
+  float: right; width: min(200px, 30%); height: auto; aspect-ratio: 3 / 4; object-fit: cover;
   margin: 0.25rem 0 1rem 1.5rem; border-radius: 12px; border: 1px solid var(--line);
 }
-@media (max-width: 34rem) { .about-photo { float: none; display: block; width: 10rem; margin: 0 0 1.25rem; } }
+@media (max-width: 34rem) { .about-photo { float: none; display: block; width: 200px; margin: 0 0 1.25rem; } }
 .about-lede { font: 1.15em/1.5 var(--font-serif); margin: 0.75rem 0 1.25rem; }
 .about-facts { list-style: none; padding: 0; margin: 0 0 1.25rem; display: flex; flex-wrap: wrap; gap: 0.35rem 1.25rem; color: var(--muted); font-size: 0.95rem; }
 .about-links { display: flex; flex-wrap: wrap; gap: 0.5rem; }
