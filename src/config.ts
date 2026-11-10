@@ -4,7 +4,12 @@
  */
 export const SITE = {
   title: "rubenich.dev",
-  description: "Writing by Rafael Rubenich.",
+  description:
+    "Rafael Rubenich is a senior full-stack software engineer (TypeScript, React, Node.js, Python) building healthcare and AI products. Notes on software engineering, system design and AI agents.",
+  tagline: "Senior Software Engineer", // used in the home page title and structured data
+  photo: "/rafael-rubenich.jpg", // 900x1200 portrait, used on About and in structured data
+  twitter: "@rrubenich",
+  locale: "en_US",
   url: "https://rubenich.dev", // your deployed URL (used for RSS, sitemap, canonical links)
   author: "Rafael Rubenich",
   lang: "en",

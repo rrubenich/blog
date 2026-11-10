@@ -24,7 +24,10 @@ const jsonLd = {
   description,
   datePublished: pubDate.toISOString(),
   dateModified: (updatedDate ?? pubDate).toISOString(),
-  author: { "@type": "Person", name: SITE.author },
+  author: { "@type": "Person", "@id": new URL("/#person", Astro.site).href, name: SITE.author, url: new URL("/about/", Astro.site).href },
+  publisher: { "@id": new URL("/#person", Astro.site).href },
+  keywords: tags.join(", "),
+  inLanguage: SITE.lang,
   ...(SITE.features.ogImages && { image: new URL(`/og/${post.id}.png`, Astro.site).href }),
   mainEntityOfPage: new URL(Astro.url.pathname, Astro.site).href,
 };
@@ -32,6 +35,10 @@ const jsonLd = {
 
 <Base title={title} description={description} type="article" reading image={SITE.features.ogImages ? `/og/${post.id}.png` : undefined}>
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(jsonLd)} />
+  <meta slot="head" property="article:published_time" content={pubDate.toISOString()} />
+  {updatedDate && <meta slot="head" property="article:modified_time" content={updatedDate.toISOString()} />}
+  <meta slot="head" property="article:author" content={new URL("/about/", Astro.site).href} />
+  {tags.map((t) => <meta slot="head" property="article:tag" content={t} />)}
   <article class="article" data-pagefind-body>
     <header class="article-head">
       {tags.length > 0 && (

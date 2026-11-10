@@ -134,15 +134,39 @@ const skills = [
 
 const cbc =
   "https://www.cbc.ca/news/canada/new-brunswick/new-brunswick-emergency-room-wait-home-text-pilot-ontario-9.7038870";
+const profileLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  url: new URL("/about/", Astro.site).href,
+  mainEntity: {
+    "@id": new URL("/#person", Astro.site).href,
+    "@type": "Person",
+    name: SITE.author,
+    hasOccupation: { "@type": "Occupation", name: SITE.tagline, skills: "TypeScript, React, Node.js, Python, LLM agents, healthcare interoperability" },
+    alumniOf: [{ "@type": "CollegeOrUniversity", name: "Universidade Estadual do Oeste do Paraná (Unioeste)" }],
+    affiliation: jobs.map((j) => ({ "@type": "Organization", name: j.company, url: j.url })),
+  },
+};
 const hasFile = (src?: string) => !!src && fs.existsSync(path.join(process.cwd(), "public", src));
 const initials = (name: string) => name.split(/\s+/).map((w) => w[0]).join("").slice(0, 2).toUpperCase();
 ---
 
-<Base title="About" description={`${SITE.author}: senior full-stack engineer building healthcare and AI products.`}>
+<Base
+  title={`About ${SITE.author}, ${SITE.tagline}`}
+  description={`${SITE.author} is a senior full-stack software engineer with 10+ years in TypeScript, React and Node.js, building healthcare and AI products at Luma Health, iFood and TOTVS.`}
+  type="profile"
+  image={SITE.photo}
+  imageWidth={900}
+  imageHeight={1200}
+  imageAlt={`Photo of ${SITE.author}`}
+>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(profileLd)} />
+  <meta slot="head" property="profile:first_name" content="Rafael" />
+  <meta slot="head" property="profile:last_name" content="Rubenich" />
   <div class="col about">
     <header class="about-head">
-      <p class="about-kicker">About</p>
-      <h1 class="page-title">Hi, I'm Rafael.</h1>
+      <img class="about-photo" src={SITE.photo} alt={`${SITE.author} in front of the Eiffel Tower`} width="900" height="1200" fetchpriority="high" />
+      <h1 class="page-title">Hi, I'm Rafael Rubenich.</h1>
       <p class="about-lede">
         I'm a senior full-stack engineer with 10+ years in TypeScript, React and Node.js, and lately a lot of Python and
         LLM agents. I build software that makes health care easier to deal with, for patients and for the staff on the other
