@@ -1,12 +1,12 @@
 ---
-title: "Welcome to Inkline"
-description: "A small Astro theme for people who would rather write than configure."
+title: "Welcome to rubenich.dev"
+description: "A new home for my writing, built with Astro."
 pubDate: 2026-10-20
 tags: ["meta", "theme"]
 featured: true
 ---
 
-Inkline is built around one idea: the page should disappear while you read. There is one column, one accent color, and almost no JavaScript.
+This blog runs on Inkline, an Astro theme built around one idea: the page should disappear while you read. There is one column, one accent color, and almost no JavaScript.
 
 ## Start in two minutes
 
@@ -14,8 +14,8 @@ Open `src/config.ts` and change the title and URL. Then add a Markdown file to `
 
 ```ts
 export const SITE = {
-  title: "My notebook",
-  url: "https://example.com",
+  title: "rubenich.dev",
+  url: "https://rubenich.dev",
 };
 ```
 

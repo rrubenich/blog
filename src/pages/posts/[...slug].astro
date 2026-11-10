@@ -42,6 +42,7 @@ const jsonLd = {
       <h1>{title}</h1>
       <p class="lede">{description}</p>
       <div class="meta">
+        <span>{SITE.author}</span>
         <time datetime={pubDate.toISOString()}>{formatDate(pubDate, SITE.lang)}</time>
         <span>{readingTime(post.body)} min read</span>
       </div>

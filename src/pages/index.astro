@@ -1,33 +1,39 @@
 ---
 import Base from "../layouts/Base.astro";
-import PostList from "../components/PostList.astro";
+import PostCard from "../components/PostCard.astro";
 import { SITE } from "../config";
-import { getPosts, formatDate, readingTime } from "../utils/posts";
+import { getPosts } from "../utils/posts";
 
 const posts = await getPosts();
 const featured = posts.find((p) => p.data.featured) ?? posts[0];
-const rest = posts.filter((p) => p !== featured).slice(0, SITE.postsOnHome);
+const others = posts.filter((p) => p !== featured);
+const side = others.slice(0, SITE.postsOnHome);
+const more = others.slice(SITE.postsOnHome, SITE.postsOnHome + SITE.morePostsOnHome);
 ---
 
 <Base>
   {featured ? (
-    <Fragment>
-    <section class="col intro featured">
-      <h1><a href={`/posts/${featured.id}/`}>{featured.data.title}</a></h1>
-      <p>{featured.data.description}</p>
-      <div class="meta">
-        <time datetime={featured.data.pubDate.toISOString()}>{formatDate(featured.data.pubDate, SITE.lang)}</time>
-        <span>{readingTime(featured.body)} min read</span>
-      </div>
-    </section>
-    {rest.length > 0 && (
-      <section class="col">
-        <h2 class="section-title">Latest</h2>
-        <PostList posts={rest} />
-        <p class="more"><a href="/posts">All posts</a></p>
+    <div class="wide home">
+      <section class:list={["home-top", { solo: side.length === 0 }]} aria-label="Latest posts">
+        <PostCard post={featured} variant="hero" />
+        {side.length > 0 && (
+          <div class="home-side">
+            {side.map((p) => <PostCard post={p} variant="row" />)}
+          </div>
+        )}
       </section>
-    )}
-    </Fragment>
+      {more.length > 0 && (
+        <section class="home-more" aria-labelledby="more-title">
+          <div class="home-more-head">
+            <h2 id="more-title">More posts</h2>
+            <a href="/posts">View all</a>
+          </div>
+          <div class="tiles">
+            {more.map((p) => <PostCard post={p} variant="tile" />)}
+          </div>
+        </section>
+      )}
+    </div>
   ) : (
     <section class="col intro">
       <h1 class="page-title">Nothing here yet</h1>

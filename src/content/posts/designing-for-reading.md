@@ -13,7 +13,7 @@ Size, width, and typeface cover most needs. Larger text helps with eyesight. A n
 
 ## Make them stick
 
-Settings that reset on every page are a chore. Inkline stores your choices in the browser and applies them before the page paints, so there is no flash of the default style.
+Settings that reset on every page are a chore. This site stores your choices in the browser and applies them before the page paints, so there is no flash of the default style.
 
 ## Respect the browser
 

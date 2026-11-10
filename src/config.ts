@@ -1,18 +1,18 @@
 /**
- * Inkline — the one file most people need to edit.
+ * rubenich.dev — site configuration.
  * Only `title` and `url` matter to get started; everything else has a default.
  */
 export const SITE = {
-  title: "Inkline",
-  description: "A quiet place for writing, built with Astro.",
+  title: "rubenich.dev",
+  description: "Writing by Rafael Rubenich.",
   url: "https://rubenich.dev", // your deployed URL (used for RSS, sitemap, canonical links)
-  author: "Your Name",
+  author: "Rafael Rubenich",
   lang: "en",
 
   // Header navigation. Remove or add links freely.
   nav: [
-    { label: "Posts", href: "/posts" },
-    { label: "Tags", href: "/tags" },
+    { label: "Home", href: "/" },
+    { label: "Archive", href: "/posts" },
     { label: "About", href: "/about" },
   ],
 
@@ -24,7 +24,8 @@ export const SITE = {
     ogImages: true, // generate a social preview image for every post at build time
   },
 
-  postsOnHome: 6,
+  postsOnHome: 4, // posts listed beside the featured one; older ones go under "More posts"
+  morePostsOnHome: 6,
   // Links shown in the footer. Leave empty to hide.
   social: [
     { label: "RSS", href: "/rss.xml" },

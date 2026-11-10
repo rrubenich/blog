@@ -1,6 +1,6 @@
-# Inkline
+# rubenich.dev
 
-A minimal, writer-first blog theme for [Astro](https://astro.build). One column, no configuration to start, and almost no JavaScript.
+The personal blog of Rafael Rubenich, built with [Astro](https://astro.build) on the Inkline theme.
 
 ## Features
 
@@ -38,7 +38,7 @@ Inkline is a static site, so it runs on Cloudflare Workers (static assets), whic
    Use git or GitHub Desktop rather than dragging files into GitHub's web uploader: hidden files such as `.gitignore` and `.node-version` are easy to miss that way.
 
 2. In the Cloudflare dashboard, go to **Workers & Pages → Create → Import a repository**, and choose your repo.
-3. Set the project name to `inkline` (or change `name` in `wrangler.jsonc` to match what you chose). Leave **Build command** empty and keep the **Deploy command** as `npx wrangler deploy`.
+3. Set the project name to `rubenich-dev` (or change `name` in `wrangler.jsonc` to match what you chose). Leave **Build command** empty and keep the **Deploy command** as `npx wrangler deploy`.
 4. Save and deploy. Every push to `main` redeploys.
 5. When it finishes, copy your `*.workers.dev` address into `url` in `src/config.ts` (or set a `SITE_URL` build variable), then push again. RSS, the sitemap and social images use that address.
 

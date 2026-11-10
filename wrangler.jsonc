@@ -1,6 +1,6 @@
 {
   // The name must match your Worker's name in the Cloudflare dashboard.
-  "name": "inkline",
+  "name": "rubenich-dev",
   "compatibility_date": "2026-01-01",
 
   // Cloudflare runs this before publishing, so no separate build command is needed.
@@ -16,6 +16,7 @@
 
   // Serve the site on the custom domain; Cloudflare creates the DNS record and certificate.
   "routes": [
-    { "pattern": "rubenich.dev", "custom_domain": true }
+    { "pattern": "rubenich.dev", "custom_domain": true },
+    { "pattern": "www.rubenich.dev", "custom_domain": true }
   ]
 }

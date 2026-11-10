@@ -7,10 +7,10 @@ const posts = await getPosts();
 const years = [...new Set(posts.map((p) => p.data.pubDate.getUTCFullYear()))];
 ---
 
-<Base title="Posts" description="Every post, newest first.">
+<Base title="Archive" description="Every post, newest first.">
   <div class="col">
-    <h1 class="page-title">Posts</h1>
-    <p class="page-lede">{posts.length} {posts.length === 1 ? "post" : "posts"}, newest first.</p>
+    <h1 class="page-title">Archive</h1>
+    <p class="page-lede">{posts.length} {posts.length === 1 ? "post" : "posts"}, newest first. Browse by <a href="/tags">tag</a>.</p>
     {years.map((y) => (
       <Fragment>
       <h2 class="year">{y}</h2>

@@ -32,3 +32,9 @@ export function formatDate(date: Date, lang = "en"): string {
 export function formatShort(date: Date, lang = "en"): string {
   return date.toLocaleDateString(lang, { year: "numeric", month: "short", day: "numeric", timeZone: "UTC" });
 }
+
+/** "Nov 7" for this year's posts, "Nov 7, 2025" for older ones. */
+export function formatCompact(date: Date, lang = "en"): string {
+  const thisYear = date.getUTCFullYear() === new Date().getUTCFullYear();
+  return date.toLocaleDateString(lang, { month: "short", day: "numeric", ...(!thisYear && { year: "numeric" }), timeZone: "UTC" });
+}

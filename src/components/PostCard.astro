@@ -1,0 +1,34 @@
+---
+import { SITE } from "../config";
+import { formatCompact, type Post } from "../utils/posts";
+
+interface Props {
+  post: Post;
+  variant?: "hero" | "row" | "tile";
+}
+const { post, variant = "row" } = Astro.props;
+const { title, description, pubDate, cover, coverAlt } = post.data;
+const href = `/posts/${post.id}/`;
+// Posts without a `cover` get a typographic placeholder instead of an image.
+const initial = title.trim().charAt(0).toUpperCase();
+const Heading = variant === "hero" ? "h2" : "h3";
+---
+
+<article class:list={["card", `card-${variant}`]}>
+  <a class:list={["card-img", { placeholder: !cover }]} href={href} tabindex="-1" aria-hidden="true">
+    {cover ? (
+      <img src={cover.src} alt={coverAlt} width={cover.width} height={cover.height} loading={variant === "hero" ? "eager" : "lazy"} decoding="async" />
+    ) : (
+      <span>{initial}</span>
+    )}
+  </a>
+  <div class="card-body">
+    <Heading class="card-title"><a href={href}>{title}</a></Heading>
+    <p class="card-desc">{description}</p>
+    <p class="card-meta">
+      <time datetime={pubDate.toISOString()}>{formatCompact(pubDate, SITE.lang)}</time>
+      <span aria-hidden="true">&bull;</span>
+      <span>{SITE.author}</span>
+    </p>
+  </div>
+</article>
