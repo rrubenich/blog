@@ -26,9 +26,16 @@ export const SITE = {
 
   postsOnHome: 4, // posts listed beside the featured one; older ones go under "More posts"
   morePostsOnHome: 6,
+  // Profiles shown as icons in the header (icon: "github" | "linkedin").
+  profiles: [
+    { label: "GitHub", href: "https://github.com/rrubenich", icon: "github" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/rubenich", icon: "linkedin" },
+  ],
+
   // Links shown in the footer. Leave empty to hide.
   social: [
+    { label: "GitHub", href: "https://github.com/rrubenich" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/rubenich" },
     { label: "RSS", href: "/rss.xml" },
-    // { label: "GitHub", href: "https://github.com/you" },
   ],
 };
