@@ -285,41 +285,80 @@ button { font: inherit; color: inherit; cursor: pointer; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
 @media print { .site-header, .site-footer, .pager, .toc { display: none; } body { background: #fff; color: #000; } }
 
-/* ---------- About ----------
-   The page uses the article classes (.article, .article-head, .lede, .meta, .prose, .callout, .tags),
-   so sizes, widths and colors come from the same rules as a post. Only About-specific pieces live here. */
+/* ---------- About ---------- */
+/* Same column width and title size as an article, so About reads like the rest of the site. */
+.about { width: min(100% - 2 * var(--gutter), var(--measure)); font-size: var(--size-reading); }
+.about .page-title { margin-top: 0.25rem; font-size: clamp(2rem, 5vw, 2.9rem); line-height: 1.12; }
+.about .job-points, .about .feature-text, .about .now { font-size: 1.05rem; }
+.about .job-roles { font-size: 1rem; }
+.about-section > p { font-size: 1.05rem; }
+.about-head { padding-top: clamp(2rem, 6vw, 3.5rem); }
+.about-head::after { content: ""; display: table; clear: both; }
 .about-photo {
-  float: right; width: min(200px, 32%); height: auto; aspect-ratio: 3 / 4; object-fit: cover;
-  margin: 1rem 0 1rem 1.5rem; border-radius: 4px; border: 1px solid var(--line);
+  float: right; width: min(200px, 30%); height: auto; aspect-ratio: 3 / 4; object-fit: cover;
+  margin: 0.25rem 0 1rem 1.5rem; border-radius: 12px; border: 1px solid var(--line);
 }
-@media (max-width: 34rem) { .about-photo { float: none; display: block; width: 200px; margin: 0 0 0.5rem; } }
-.about .article-head::after { content: ""; display: table; clear: both; }
-.about .article-head .meta { margin-bottom: 1rem; }
-.about-links svg { width: 0.9rem; height: 0.9rem; margin-right: 0.35rem; vertical-align: -0.1em; }
-.about-note { font: 0.875rem/1.5 var(--font-sans); color: var(--muted); }
-.prose .about-note { margin-top: -0.6em; }
-.prose li .about-note { display: block; margin-top: 0.2em; }
+@media (max-width: 34rem) { .about-photo { float: none; display: block; width: 200px; margin: 0 0 1.25rem; } }
+.about-lede { font: 1.15em/1.5 var(--font-serif); margin: 0.75rem 0 1.25rem; }
+.about-facts { list-style: none; padding: 0; margin: 0 0 1.25rem; display: flex; flex-wrap: wrap; gap: 0.35rem 1.25rem; color: var(--muted); font-size: 0.95rem; }
+.about-links { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.pill {
+  display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.4rem 0.85rem;
+  border: 1px solid var(--line); border-radius: 99px; text-decoration: none; font-size: 0.9rem;
+}
+.pill:hover { border-color: var(--text); }
+.pill svg { width: 1rem; height: 1rem; }
+.now { margin-top: 2rem; font-size: 1rem; line-height: 1.55; }
 
-.prose .job { display: grid; grid-template-columns: 3rem minmax(0, 1fr); gap: 0 1.1rem; margin-block: 0; padding-block: 1.25rem; }
-.prose .job + .job { border-top: 1px solid var(--line); }
-.prose .job h3 { margin-top: 0; margin-bottom: 0.35em; }
-.prose .job h3 a { color: inherit; text-decoration: none; }
-.prose .job h3 a:hover { color: var(--accent); }
-.prose .job ul { margin-bottom: 0; }
+.about-section { margin-top: 3rem; }
+.about-section > h2 { font: 700 1.5rem/1.2 var(--font-serif); margin: 0 0 1.25rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--line); }
+
+.feature {
+  display: grid; gap: 0.5rem; padding: 1.5rem; text-decoration: none; border-radius: 10px;
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--line));
+  background: color-mix(in srgb, var(--accent) 6%, var(--bg));
+}
+.feature:hover { border-color: var(--accent); }
+.feature-tag { font: 600 0.75rem var(--font-sans); text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); }
+.feature-title { font: 700 1.4rem/1.25 var(--font-serif); text-wrap: balance; }
+.feature-text { color: var(--muted); line-height: 1.6; }
+.feature-more { font-weight: 600; color: var(--accent); font-size: 0.95rem; }
+
+.jobs { list-style: none; margin: 0; padding: 0; }
+.job { display: grid; grid-template-columns: 3rem minmax(0, 1fr); gap: 1.1rem; padding-block: 1.25rem; }
+.job + .job { border-top: 1px solid var(--line); }
 .job-logo {
-  width: 3rem; height: 3rem; border-radius: 6px; overflow: hidden; display: grid; place-items: center;
-  background: var(--code-bg); border: 1px solid var(--line);
-  font: 700 1rem var(--font-sans); color: var(--muted); text-decoration: none;
+  width: 3rem; height: 3rem; border-radius: 10px; overflow: hidden; display: grid; place-items: center;
+  background: color-mix(in srgb, var(--accent) 10%, var(--code-bg)); border: 1px solid var(--line);
+  font: 700 1rem var(--font-sans); color: var(--accent); text-decoration: none;
 }
-.job-logo img { width: 100%; height: 100%; object-fit: contain; padding: 6px; background: #fff; border-radius: 0; }
-.prose .job-roles { list-style: none; padding: 0; margin: 0.6em 0 0.9em; font: 0.95rem/1.5 var(--font-sans); }
-.prose .job-roles li + li { margin-top: 0.15em; }
-.job-roles li { display: flex; justify-content: space-between; gap: 0 1rem; flex-wrap: wrap; }
+.job-logo img { width: 100%; height: 100%; object-fit: contain; padding: 6px; background: #fff; }
+.job h3 { font: 700 1.25rem/1.25 var(--font-serif); margin: 0; }
+.job h3 a { text-decoration: none; }
+.job h3 a:hover { color: var(--accent); }
+.job-blurb { margin: 0.15rem 0 0.6rem; color: var(--muted); font-size: 0.9rem; }
+.job-roles { list-style: none; margin: 0 0 0.75rem; padding: 0; font-size: 0.95rem; }
+.job-roles li { display: flex; justify-content: space-between; gap: 0.25rem 1rem; flex-wrap: wrap; }
 .job-roles span { font-weight: 600; }
-.job-roles time { color: var(--muted); font-size: 0.875rem; font-variant-numeric: tabular-nums; }
+.job-roles time { color: var(--muted); font-size: 0.85rem; font-variant-numeric: tabular-nums; }
+.subhead { font: 600 0.8rem var(--font-sans); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin: 1.75rem 0 0; }
+.job-points { margin: 0; padding-left: 1.1rem; line-height: 1.55; }
+.job-points li + li { margin-top: 0.35rem; }
+.job-points li::marker { color: var(--accent); }
 
-/* Skill chips reuse the tag pill, as plain text instead of links */
-.prose .tags { padding: 0; }
-.prose .tags li + li { margin-top: 0; }
-.tags span { display: inline-block; padding: 0.2rem 0.7rem; border: 1px solid var(--line); border-radius: 99px; font: 0.875rem var(--font-sans); color: var(--muted); }
-.prose h3 + .tags { margin-top: 0.5em; }
+.projects { display: grid; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); gap: 1rem; }
+.project { padding: 1.1rem 1.2rem; border: 1px solid var(--line); border-radius: 10px; display: flex; flex-direction: column; gap: 0.5rem; }
+.project h3 { margin: 0; font: 700 1.1rem var(--font-sans); }
+.project h3 a { display: inline-flex; align-items: center; gap: 0.45rem; text-decoration: none; }
+.project h3 a:hover { color: var(--accent); }
+.project h3 svg { width: 1rem; height: 1rem; }
+.project p { margin: 0; font-size: 0.93rem; line-height: 1.55; }
+.project-stack { color: var(--muted); font-size: 0.82rem !important; margin-top: auto !important; }
+.project-extra { font-size: 0.88rem; color: var(--accent); text-decoration: none; }
+
+.skills { margin: 0; display: grid; gap: 1rem; }
+.skills > div { display: grid; grid-template-columns: 8rem minmax(0, 1fr); gap: 0.5rem 1rem; align-items: baseline; }
+.skills dt { font-weight: 600; font-size: 0.95rem; }
+.skills dd { margin: 0; }
+.skills .tags span { display: inline-block; padding: 0.2rem 0.7rem; border: 1px solid var(--line); border-radius: 99px; font-size: 0.85rem; color: var(--muted); }
+@media (max-width: 34rem) { .skills > div { grid-template-columns: 1fr; } }

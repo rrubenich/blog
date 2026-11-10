@@ -163,118 +163,136 @@ const initials = (name: string) => name.split(/\s+/).map((w) => w[0]).join("").s
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(profileLd)} />
   <meta slot="head" property="profile:first_name" content="Rafael" />
   <meta slot="head" property="profile:last_name" content="Rubenich" />
-  <article class="article about">
-    <header class="article-head">
+  <div class="col about">
+    <header class="about-head">
       <img class="about-photo" src="/rafael-rubenich-200.jpg" srcset="/rafael-rubenich-200.jpg 1x, /rafael-rubenich-400.jpg 2x" alt={`${SITE.author} in front of the Eiffel Tower`} width="200" height="266" fetchpriority="high" />
-      <h1>Hi, I'm Rafael Rubenich.</h1>
-      <p class="lede">
+      <h1 class="page-title">Hi, I'm Rafael Rubenich.</h1>
+      <p class="about-lede">
         I'm a senior full-stack engineer with 10+ years in TypeScript, React and Node.js, and lately a lot of Python and
         LLM agents. I build software that makes health care easier to deal with, for patients and for the staff on the other
         side of the screen.
       </p>
-      <div class="meta">
-        <span>Vitória, Brazil</span>
-        <span>Remote, US time-zone overlap, open to relocation</span>
-        <span>Portuguese, English, Spanish</span>
-      </div>
-      <ul class="tags about-links">
-        {SITE.profiles.map((p) => (
-          <li><a href={p.href} rel="me noopener" target="_blank"><BrandIcon name={p.icon as "github" | "linkedin"} />{p.label}</a></li>
-        ))}
-        <li><a href="mailto:rfrubenich@gmail.com">rfrubenich@gmail.com</a></li>
+      <ul class="about-facts">
+        <li>📍 Vitória, Brazil</li>
+        <li>🌎 Remote, US time-zone overlap, open to relocation</li>
+        <li>🗣️ Portuguese, English, Spanish</li>
       </ul>
+      <div class="about-links">
+        {SITE.profiles.map((p) => (
+          <a class="pill" href={p.href} rel="me noopener" target="_blank"><BrandIcon name={p.icon as "github" | "linkedin"} />{p.label}</a>
+        ))}
+        <a class="pill" href="mailto:rfrubenich@gmail.com">✉️ rfrubenich@gmail.com</a>
+      </div>
     </header>
 
-    <div class="prose">
-      <p class="callout">
-        <strong>Now:</strong> on a planned career break, going deeper into system design and AI agent engineering by
-        building things in the open. I'm looking for my next hands-on Senior Software Engineer role.
-      </p>
+    <aside class="now callout">
+      <strong>Now:</strong> on a planned career break, going deeper into system design and AI agent engineering by building
+      things in the open. I'm looking for my next hands-on Senior Software Engineer role.
+    </aside>
 
-      <h2 id="highlight">Highlight</h2>
-      <h3>A virtual ER waiting room, cited by a health minister</h3>
-      <p class="about-note">CBC News · January 14, 2026</p>
-      <p>
-        I led Luma's first Canadian go-live: an emergency-department queue at Sault Area Hospital in Ontario that lets
-        non-urgent patients wait at home and get a text when it's time to come in. During the three-month pilot, overall
-        wait times fell by more than 25% and the share of patients leaving without being seen nearly halved. New
-        Brunswick's health minister, Dr. John Dornan, singled the project out as a model his province should look at.
-      </p>
-      <p><a href={cbc} target="_blank" rel="noopener">Read the CBC story</a></p>
+    <section class="about-section" aria-labelledby="h-highlight">
+      <h2 id="h-highlight">Highlight</h2>
+      <a class="feature" href={cbc} target="_blank" rel="noopener">
+        <span class="feature-tag">In the news · CBC News, Jan 2026</span>
+        <span class="feature-title">A virtual ER waiting room, cited by a health minister</span>
+        <span class="feature-text">
+          I led Luma's first Canadian go-live: an emergency-department queue at Sault Area Hospital in Ontario that lets
+          non-urgent patients wait at home and get a text when it's time to come in. During the three-month pilot, overall
+          wait times fell by more than 25% and the share of patients leaving without being seen nearly halved.
+          New Brunswick's health minister, Dr. John Dornan, singled the project out as a model his province should look at.
+        </span>
+        <span class="feature-more">Read the CBC story →</span>
+      </a>
+    </section>
 
-      <h2 id="experience">Experience</h2>
-      {jobs.map((j) => (
-        <section class="job">
-          <a class="job-logo" href={j.url} target="_blank" rel="noopener" aria-hidden="true" tabindex="-1">
-            {hasFile(j.logo) ? <img src={j.logo} alt="" width="48" height="48" loading="lazy" /> : <span>{initials(j.company)}</span>}
-          </a>
-          <div class="job-body">
-            <h3><a href={j.url} target="_blank" rel="noopener">{j.company}</a></h3>
-            <p class="about-note">{j.blurb} · {j.where}</p>
-            <ul class="job-roles">
-              {j.roles.map((r) => <li><span>{r.title}</span><time>{r.dates}</time></li>)}
-            </ul>
-            <ul>
-              {j.highlights.map((h) => <li>{h}</li>)}
-            </ul>
-          </div>
-        </section>
-      ))}
-
-      <h2 id="internships">Internships</h2>
-      {internships.map((j) => (
-        <section class="job">
-          <a class="job-logo" href={j.url} target="_blank" rel="noopener" aria-hidden="true" tabindex="-1">
-            {hasFile(j.logo) ? <img src={j.logo} alt="" width="48" height="48" loading="lazy" /> : <span>{initials(j.company)}</span>}
-          </a>
-          <div class="job-body">
-            <h3><a href={j.url} target="_blank" rel="noopener">{j.company}</a></h3>
-            <p class="about-note">{j.blurb} · {j.where}</p>
-            <ul class="job-roles">
-              {j.roles.map((r) => <li><span>{r.title}</span><time>{r.dates}</time></li>)}
-            </ul>
-            <ul>
-              {j.highlights.map((h) => <li>{h}</li>)}
-            </ul>
-          </div>
-        </section>
-      ))}
-
-      <h2 id="projects">What I'm building</h2>
-      <ul>
-        {projects.map((p) => (
-          <li>
-            <a href={p.href} target="_blank" rel="noopener"><strong>{p.name}</strong></a>: {p.text}{" "}
-            {p.extra && <a href={p.extra.href} target="_blank" rel="noopener">{p.extra.label}</a>}
-            <span class="about-note">{p.stack}</span>
+    <section class="about-section" aria-labelledby="h-work">
+      <h2 id="h-work">Experience</h2>
+      <ol class="jobs">
+        {jobs.map((j) => (
+          <li class="job">
+            <a class="job-logo" href={j.url} target="_blank" rel="noopener" aria-hidden="true" tabindex="-1">
+              {hasFile(j.logo) ? <img src={j.logo} alt="" width="48" height="48" loading="lazy" /> : <span>{initials(j.company)}</span>}
+            </a>
+            <div class="job-body">
+              <h3><a href={j.url} target="_blank" rel="noopener">{j.company}</a></h3>
+              <p class="job-blurb">{j.blurb} · {j.where}</p>
+              <ul class="job-roles">
+                {j.roles.map((r) => <li><span>{r.title}</span><time>{r.dates}</time></li>)}
+              </ul>
+              <ul class="job-points">
+                {j.highlights.map((h) => <li>{h}</li>)}
+              </ul>
+            </div>
           </li>
         ))}
-      </ul>
+      </ol>
+      <h3 class="subhead">Internships</h3>
+      <ol class="jobs">
+        {internships.map((j) => (
+          <li class="job">
+            <a class="job-logo" href={j.url} target="_blank" rel="noopener" aria-hidden="true" tabindex="-1">
+              {hasFile(j.logo) ? <img src={j.logo} alt="" width="48" height="48" loading="lazy" /> : <span>{initials(j.company)}</span>}
+            </a>
+            <div class="job-body">
+              <h3><a href={j.url} target="_blank" rel="noopener">{j.company}</a></h3>
+              <p class="job-blurb">{j.blurb} · {j.where}</p>
+              <ul class="job-roles">
+                {j.roles.map((r) => <li><span>{r.title}</span><time>{r.dates}</time></li>)}
+              </ul>
+              <ul class="job-points">
+                {j.highlights.map((h) => <li>{h}</li>)}
+              </ul>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </section>
 
-      <h2 id="tools">Tools I reach for</h2>
-      {skills.map((s) => (
-        <Fragment>
-          <h3>{s.group}</h3>
-          <ul class="tags">{s.items.map((i) => <li><span>{i}</span></li>)}</ul>
-        </Fragment>
-      ))}
+    <section class="about-section" aria-labelledby="h-projects">
+      <h2 id="h-projects">What I'm building</h2>
+      <div class="projects">
+        {projects.map((p) => (
+          <article class="project">
+            <h3><a href={p.href} target="_blank" rel="noopener"><BrandIcon name="github" />{p.name}</a></h3>
+            <p>{p.text}</p>
+            <p class="project-stack">{p.stack}</p>
+            {p.extra && <a class="project-extra" href={p.extra.href} target="_blank" rel="noopener">{p.extra.label} →</a>}
+          </article>
+        ))}
+      </div>
+    </section>
 
-      <h2 id="education">Education</h2>
-      <section class="job">
-        <a class="job-logo" href="https://www.unioeste.br" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1">
-          {hasFile("/logos/unioeste.png") ? <img src="/logos/unioeste.png" alt="" width="48" height="48" loading="lazy" /> : <span>U</span>}
-        </a>
-        <div class="job-body">
-          <h3><a href="https://www.unioeste.br" target="_blank" rel="noopener">Universidade Estadual do Oeste do Paraná (Unioeste)</a></h3>
-          <ul class="job-roles">
-            <li><span>B.Sc. in Computer Science</span><time>2011 – 2015</time></li>
-          </ul>
-          <ul>
-            <li>Student representative for the Computer Science class of 2011.</li>
-            <li>Member of the Computer Science Academic Center (CACC), 2012–2015.</li>
-          </ul>
-        </div>
-      </section>
-    </div>
-  </article>
+    <section class="about-section" aria-labelledby="h-skills">
+      <h2 id="h-skills">Tools I reach for</h2>
+      <dl class="skills">
+        {skills.map((s) => (
+          <div>
+            <dt>{s.group}</dt>
+            <dd><ul class="tags">{s.items.map((i) => <li><span>{i}</span></li>)}</ul></dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+
+    <section class="about-section" aria-labelledby="h-edu">
+      <h2 id="h-edu">Education</h2>
+      <ol class="jobs">
+        <li class="job">
+          <a class="job-logo" href="https://www.unioeste.br" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1">
+            {hasFile("/logos/unioeste.png") ? <img src="/logos/unioeste.png" alt="" width="48" height="48" loading="lazy" /> : <span>U</span>}
+          </a>
+          <div class="job-body">
+            <h3><a href="https://www.unioeste.br" target="_blank" rel="noopener">Universidade Estadual do Oeste do Paraná (Unioeste)</a></h3>
+            <ul class="job-roles">
+              <li><span>B.Sc. in Computer Science</span><time>2011 – 2015</time></li>
+            </ul>
+            <ul class="job-points">
+              <li>Student representative for the Computer Science class of 2011.</li>
+              <li>Member of the Computer Science Academic Center (CACC), 2012–2015.</li>
+            </ul>
+          </div>
+        </li>
+      </ol>
+    </section>
+  </div>
 </Base>
