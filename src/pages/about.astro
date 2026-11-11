@@ -3,6 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import Base from "../layouts/Base.astro";
 import BrandIcon from "../components/BrandIcon.astro";
+import Icon from "../components/Icon.astro";
 import { SITE } from "../config";
 
 // Company logos live in public/logos/. A missing file falls back to a monogram.
@@ -170,7 +171,7 @@ const initials = (name: string) => name.split(/\s+/).map((w) => w[0]).join("").s
   description={`${SITE.author} is a senior full-stack software engineer with 10+ years in TypeScript, React and Node.js, building healthcare and AI products at Luma Health, iFood and TOTVS.`}
   type="profile"
   image={SITE.photo}
-  imageWidth={900}
+  imageWidth={1200}
   imageHeight={1200}
   imageAlt={`Photo of ${SITE.author}`}
 >
@@ -179,7 +180,7 @@ const initials = (name: string) => name.split(/\s+/).map((w) => w[0]).join("").s
   <meta slot="head" property="profile:last_name" content="Rubenich" />
   <div class="col about">
     <header class="about-head">
-      <img class="about-photo" src="/rafael-rubenich-200.jpg" srcset="/rafael-rubenich-200.jpg 1x, /rafael-rubenich-400.jpg 2x" alt={`${SITE.author} in front of the Eiffel Tower`} width="200" height="266" fetchpriority="high" />
+      <img class="about-photo" src="/rafael-rubenich-240.webp" srcset="/rafael-rubenich-240.webp 1x, /rafael-rubenich-480.webp 2x" alt={`${SITE.author} in front of the Eiffel Tower`} width="120" height="120" fetchpriority="high" />
       <h1 class="page-title">Hi, I'm Rafael Rubenich.</h1>
       <p class="about-lede">
         I'm a senior full-stack engineer with 10+ years in TypeScript, React and Node.js, and lately a lot of Python and
@@ -187,22 +188,18 @@ const initials = (name: string) => name.split(/\s+/).map((w) => w[0]).join("").s
         side of the screen.
       </p>
       <ul class="about-facts">
-        <li>📍 Vitória, Brazil</li>
-        <li>🌎 Remote, US time-zone overlap, open to relocation</li>
-        <li>🗣️ Portuguese, English, Spanish</li>
+        <li><Icon name="map-pin" />Vitória, Brazil</li>
+        <li><Icon name="globe" />Remote, US time-zone overlap, open to relocation</li>
+        <li><Icon name="languages" />Portuguese, English, Spanish</li>
       </ul>
       <div class="about-links" data-area="about-profiles">
         {SITE.profiles.map((p) => (
           <a class="pill" href={p.href} rel="me noopener" target="_blank"><BrandIcon name={p.icon as "github" | "linkedin"} />{p.label}</a>
         ))}
-        <a class="pill" href="mailto:rfrubenich@gmail.com">✉️ rfrubenich@gmail.com</a>
+        <a class="pill" href="mailto:rfrubenich@gmail.com"><Icon name="mail" />rfrubenich@gmail.com</a>
       </div>
     </header>
 
-    <aside class="now callout">
-      <strong>Now:</strong> on a planned career break, going deeper into system design and AI agent engineering by building
-      things in the open. I'm looking for my next hands-on Senior Software Engineer role.
-    </aside>
 
     <section class="about-section" aria-labelledby="h-highlight">
       <h2 id="h-highlight">Highlight</h2>

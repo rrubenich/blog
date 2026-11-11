@@ -4,7 +4,7 @@ import satori from "satori";
 import { Resvg } from "@resvg/resvg-js";
 import { SITE } from "../config";
 
-// Fonts come from @fontsource/newsreader (Latin only). Titles in other scripts
+// Fonts come from @fontsource/newsreader (Latin only), the site's only typeface. Titles in other scripts
 // need a font that covers them: add one to `loadFonts()` below.
 const fontDir = path.join(process.cwd(), "node_modules/@fontsource/newsreader/files");
 let fonts: { name: string; data: Buffer; weight: 400 | 700; style: "normal" }[] | undefined;
@@ -16,10 +16,12 @@ function loadFonts() {
   return fonts;
 }
 
-const INK = "#161a2b";
-const PAPER = "#f6f7f9";
-const MUTED = "#5a6175";
-const ACCENT = "#2b45d1";
+// Palette only: black, white, the blue scale and the neutrals (see AGENTS.md).
+const INK = "#000000";
+const PAPER = "#ffffff";
+const MUTED = "#5a6175"; // neutral-600
+const ACCENT = "#1770b2"; // blue-600
+const TRACK = "#c1dff6"; // blue-200
 
 type Card = { title: string; subtitle?: string; footer?: string };
 
@@ -37,7 +39,7 @@ export async function renderOg({ title, subtitle, footer }: Card): Promise<Uint8
       el("div", { display: "flex", fontWeight: 700, color: INK }, SITE.title),
       footer ? el("div", { display: "flex" }, footer) : el("div", { display: "flex" }, ""),
     ]),
-    el("div", { display: "flex", position: "absolute", left: 0, bottom: 0, width: 1200, height: 14, background: "#dde0e6" }, ""),
+    el("div", { display: "flex", position: "absolute", left: 0, bottom: 0, width: 1200, height: 14, background: TRACK }, ""),
     el("div", { display: "flex", position: "absolute", left: 0, bottom: 0, width: 720, height: 14, background: ACCENT }, ""),
   ]);
 

@@ -2,6 +2,7 @@ import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import { SITE } from "./src/config";
+import { paletteLight, paletteDark } from "./src/utils/shiki-themes";
 
 // SITE_URL (set in your host's environment) overrides `url` in src/config.ts.
 const site = process.env.SITE_URL ?? SITE.url;
@@ -17,7 +18,7 @@ export default defineConfig({
   integrations: [mdx(), sitemap()],
   markdown: {
     shikiConfig: {
-      themes: { light: "github-light", dark: "github-dark" },
+      themes: { light: paletteLight, dark: paletteDark },
       wrap: true,
     },
   },
