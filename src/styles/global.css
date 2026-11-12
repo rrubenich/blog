@@ -338,9 +338,9 @@ button { font: inherit; color: inherit; cursor: pointer; }
 /* ---------- About ---------- */
 /* Same column, typeface and type scale as an article. */
 .about-head { padding-top: clamp(2rem, 6vw, 3.5rem); }
-/* Round avatar sits on the column's left edge, above the name, on every screen size. */
+/* Avatar sits on the column's left edge, above the name, on every screen size. */
 .about-photo {
-  display: block; width: 7.5rem; height: 7.5rem; border-radius: 50%; object-fit: cover;
+  display: block; width: 7.5rem; height: 7.5rem; border-radius: 8px; object-fit: cover;
   margin: 0 0 1.25rem; background: var(--surface); box-shadow: 0 0 0 1px var(--line);
 }
 @media (max-width: 34rem) { .about-photo { width: 6rem; height: 6rem; margin-bottom: 1rem; } }

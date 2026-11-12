@@ -7,7 +7,7 @@ export const SITE = {
   description:
     "Rafael Rubenich is a senior full-stack engineer building healthcare and AI products. Notes on software engineering, system design and AI agents.",
   tagline: "Senior Software Engineer", // used in the home page title and structured data
-  photo: "/rafael-rubenich.jpg", // 1200x1200 round portrait on white, used for social cards and structured data
+  photo: "/rafael-rubenich.jpg", // 558x558 square portrait, used for the About social card and structured data
   twitter: "@rrubenich",
   locale: "en_US",
   url: "https://rubenich.dev", // your deployed URL (used for RSS, sitemap, canonical links)

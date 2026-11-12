@@ -42,7 +42,7 @@ export async function renderOg({ title, subtitle, footer, photo }: Card): Promis
       el("div", { display: "flex", fontWeight: 700, color: INK }, SITE.title),
       footer ? el("div", { display: "flex" }, footer) : el("div", { display: "flex" }, ""),
     ]),
-    photoSrc ? { type: "img", props: { src: photoSrc, width: 380, height: 380, style: { position: "absolute", right: 80, top: 100, borderRadius: 190 } } } : null,
+    photoSrc ? { type: "img", props: { src: photoSrc, width: 380, height: 380, style: { position: "absolute", right: 80, top: 100, borderRadius: 8 } } } : null,
     el("div", { display: "flex", position: "absolute", left: 0, bottom: 0, width: 1200, height: 14, background: TRACK }, ""),
     el("div", { display: "flex", position: "absolute", left: 0, bottom: 0, width: 720, height: 14, background: ACCENT }, ""),
   ].filter(Boolean));

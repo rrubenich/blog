@@ -180,7 +180,11 @@ const initials = (name: string) => name.split(/\s+/).map((w) => w[0]).join("").s
   <meta slot="head" property="profile:last_name" content="Rubenich" />
   <div class="col about">
     <header class="about-head">
-      <img class="about-photo" src="/rafael-rubenich-240.webp" srcset="/rafael-rubenich-240.webp 1x, /rafael-rubenich-480.webp 2x" alt={`${SITE.author} in front of the Eiffel Tower`} width="120" height="120" fetchpriority="high" />
+      <picture>
+        <source type="image/avif" srcset="/rafael-rubenich-240.avif 1x, /rafael-rubenich-480.avif 2x" />
+        <source type="image/webp" srcset="/rafael-rubenich-240.webp 1x, /rafael-rubenich-480.webp 2x" />
+        <img class="about-photo" src="/rafael-rubenich.jpg" alt={`Portrait of ${SITE.author}`} width="120" height="120" fetchpriority="high" />
+      </picture>
       <h1 class="page-title">Hi, I'm Rafael Rubenich.</h1>
       <p class="about-lede">
         I'm a senior full-stack engineer with 10+ years in TypeScript, React and Node.js, and lately a lot of Python and
