@@ -14,6 +14,7 @@ const more = others.slice(SITE.postsOnHome, SITE.postsOnHome + SITE.morePostsOnH
 <Base>
   {featured ? (
     <div class="wide home">
+      <h1 class="sr-only">{SITE.author}, {SITE.tagline}</h1>
       <section class:list={["home-top", { solo: side.length === 0 }]} aria-label="Latest posts">
         <PostCard post={featured} variant="hero" />
         {side.length > 0 && (

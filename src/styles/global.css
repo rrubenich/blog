@@ -103,6 +103,11 @@ button { font: inherit; color: inherit; cursor: pointer; }
   background: var(--text); color: var(--bg); padding: 0.5rem 0.9rem; border-radius: 4px;
 }
 .skip:focus { top: 0.75rem; }
+/* Hidden visually, still read by screen readers and search engines. */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
 
 .frame { width: min(100% - 2 * var(--gutter), var(--frame)); margin-inline: auto; }
 /* Pages share the article column width. Text size is the site-wide base, not the reading preference. */
