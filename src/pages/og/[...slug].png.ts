@@ -11,10 +11,11 @@ export async function getStaticPaths() {
     props: { title: p.data.title, subtitle: p.data.description, footer: formatDate(p.data.pubDate, SITE.lang) },
   }));
   pages.push({ params: { slug: "default" }, props: { title: SITE.title, subtitle: SITE.description, footer: "" } });
+  pages.push({ params: { slug: "about" }, props: { title: SITE.author, subtitle: SITE.tagline, footer: "About", photo: SITE.photo } });
   return pages;
 }
 
 export async function GET({ props }: APIContext) {
-  const png = await renderOg(props as { title: string; subtitle?: string; footer?: string });
+  const png = await renderOg(props as { title: string; subtitle?: string; footer?: string; photo?: string });
   return new Response(png, { headers: { "Content-Type": "image/png" } });
 }

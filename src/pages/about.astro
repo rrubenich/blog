@@ -167,13 +167,13 @@ const initials = (name: string) => name.split(/\s+/).map((w) => w[0]).join("").s
 ---
 
 <Base
-  title={`About ${SITE.author}, ${SITE.tagline}`}
-  description={`${SITE.author} is a senior full-stack software engineer with 10+ years in TypeScript, React and Node.js, building healthcare and AI products at Luma Health, iFood and TOTVS.`}
+  title={`About ${SITE.author}`}
+  description="Senior full-stack engineer with 10+ years in TypeScript, React and Node.js, building healthcare and AI products at Luma Health, iFood and TOTVS."
   type="profile"
-  image={SITE.photo}
+  image={SITE.features.ogImages ? "/og/about.png" : SITE.photo}
   imageWidth={1200}
-  imageHeight={1200}
-  imageAlt={`Photo of ${SITE.author}`}
+  imageHeight={SITE.features.ogImages ? 630 : 1200}
+  imageAlt={`${SITE.author}, ${SITE.tagline}`}
 >
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(profileLd)} />
   <meta slot="head" property="profile:first_name" content="Rafael" />
